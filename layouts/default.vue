@@ -8,7 +8,7 @@
     <v-footer
       :absolute="!fixed"
       app
-    >      <span>create by suchnaun wannapinyo 6104101393 25/ 09/ 2020</span>
+    >      <span>Create by suchnaun wannapinyo 6104101393 Maejo University</span>
     </v-footer>
   </v-app>
 </template>
@@ -22,3 +22,9 @@ export default {
   }
 }
 </script>
+<style>
+  .theme--dark.v-application {
+    background-image:url('https://cdn.dribbble.com/users/6616/screenshots/1458875/rocket.gif');
+    background-size: cover;
+}
+</style>

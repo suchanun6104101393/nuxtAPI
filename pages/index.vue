@@ -1,51 +1,41 @@
 <template lang="html">
   <div>
-    <div>
-      <v-toolbar
+    <v-toolbar
       dark
       prominent
-      src="https://cdn.vuetifyjs.com/images/backgrounds/vbanner.jpg"
+      src="https://swot.jpl.nasa.gov/system/feature_items/images/38_orbit_cropped.gif"
     >
-
-      <v-toolbar-title>Vuetify</v-toolbar-title>
-
-      <v-spacer></v-spacer>
+      <v-toolbar-title>NASA</v-toolbar-title>
+      <v-spacer />
     </v-toolbar>
-      <v-text-field v-model="query" label="SEARCH ABOUT NASA (ENGLISH ONLY)" />
-      <v-btn large @click="handleSearchNasa" color="error">
-        Search
-      </v-btn>
-        <v-progress-circular
-          indeterminate
-          color="primary"
-    ></v-progress-circular>
-
-    <v-progress-circular
-          indeterminate
-          color="red"
-    ></v-progress-circular>
-
-    <v-progress-circular
-          indeterminate
-          color="purple"
-    ></v-progress-circular>
-
-    <v-progress-circular
-          indeterminate
-          color="green"
-    ></v-progress-circular>
-
-    <v-progress-circular
-          indeterminate
-          color="amber"
-    ></v-progress-circular>
-    </div>
-    <div v-for="list in nasa" :key="list.items">
-      <!-- {{list}} -->
-      <nuxt-link :to=" {name: 'product-id', params: { id: list }} ">
-        <img :src="list.links[0].href">
-      </nuxt-link>
-    </div>
+    <v-text-field v-model="query" label="SEARCH ABOUT NASA (ENGLISH ONLY)" />
+    <v-btn block rounded color="cyan darken-1" @click="handleSearchNasa">
+      <v-icon dark>
+        mdi-heart
+      </v-icon>
+      Search
+      <v-icon dark>
+        mdi-heart
+      </v-icon>
+    </v-btn>
+    <br><br>
+    <v-row justify="center">
+      <v-card
+        v-for="list in nasa"
+        :key="list.items"
+         width="344"
+        class="ml-6 mb-6"
+      >
+        <nuxt-link :to=" {name: 'product-id', params: { id: list }} ">
+          <v-img :src="list.links[0].href" height="194" />
+          <v-btn  block color="pink darken-1" rounded >
+            <v-icon>mdi-star</v-icon>
+            Click
+            <v-icon>mdi-star</v-icon>
+          </v-btn>
+        </nuxt-link>
+      </v-card>
+    </v-row>
   </div>
 </template>
 <script>
@@ -61,10 +51,9 @@ export default {
     handleSearchNasa () {
       const url = 'https://images-api.nasa.gov/search?q=' + this.query + ''
       axios.get(url).then((response) => {
-        this.nasa = response.data.collection.items.slice(1, 20)
+        this.nasa = response.data.collection.items.slice(0, 36)
       })
     }
   }
 }
 </script>
-<style lang="css" scoped></style>
